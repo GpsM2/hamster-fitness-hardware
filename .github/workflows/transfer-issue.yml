@@ -1,0 +1,37 @@
+name: Transfer software issues
+
+# Moves an issue to the ha-hamster-fitness-integration repo as soon as it
+# gets labeled "software-issue" or "integration" - for reports that turn
+# out to be about the Home Assistant integration/dashboard cards rather
+# than this repo's hardware.
+#
+# IMPORTANT: the default GITHUB_TOKEN is scoped to this repo only and
+# cannot write to a different repository, even one owned by the same
+# account - `gh issue transfer` needs a token with access to BOTH repos.
+# Create a fine-grained personal access token (Issues: read & write) that
+# covers both hamster-fitness-hardware and ha-hamster-fitness-integration,
+# then add it as a repository secret named CROSS_REPO_PAT here (Settings ->
+# Secrets and variables -> Actions). Until that secret exists, this
+# workflow will fail when it runs.
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  issues: write
+
+jobs:
+  transfer:
+    if: |
+      github.event.label.name == 'software-issue' ||
+      github.event.label.name == 'integration'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Transfer issue to ha-hamster-fitness-integration
+        env:
+          GH_TOKEN: ${{ secrets.CROSS_REPO_PAT }}
+        run: |
+          gh issue transfer "${{ github.event.issue.number }}" \
+            GpsM2/ha-hamster-fitness-integration \
+            -R "${{ github.repository }}"
