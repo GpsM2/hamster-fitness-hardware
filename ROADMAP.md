@@ -42,9 +42,13 @@ Sensordaten-Analyse.
   Hintergrund.
 - **Hardware-Basis:**
   - Custom All-in-One-PCB (Turnkey PCBA via PCBWay)
-  - Chip: ESP32-S3 (native Matter-Vorbereitung & erhöhte
+  - Chip: [ESP32-S31](https://www.espressif.com/en/products/socs/esp32-s31)
+    (Wi-Fi 6, Bluetooth 5.4 und natives 802.15.4 für Thread/Zigbee —
+    also eine echte Matter/Thread-Basis — plus deutlich mehr
     Rechenleistung für die direkte Darstellung der Daten auf einer
-    eigenen "Webseite" auf dem Chip)
+    eigenen "Webseite" auf dem Chip. Laut Espressif aktuell noch
+    nicht verfügbar — passt aber zum "in Planung"-Status dieser
+    Phase.)
   - Integrierte Sensorik: SHT40 SMD (Klima), Reed-Kontakt
     (Deckelöffnung), IR-Kopf auf einem Board
   - Gehäuse: hamstersicheres 3D-Druck-Gehäuse mit geschützter
