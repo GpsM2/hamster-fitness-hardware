@@ -1,2 +1,10 @@
 .esphome/
 secrets.yaml
+
+# KiCad backups/locks
+*.kicad_sch-bak
+*.kicad_pcb-bak
+_autosave-*
+*-backups/
+fp-info-cache
+*.lck

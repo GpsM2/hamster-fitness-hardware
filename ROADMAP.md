@@ -1,92 +1,107 @@
 # Roadmap
 
-Diese Roadmap beschreibt die strategischen Produkt-Phasen von
-**Hamster Fitness Hardware** — vom aktuellen DIY-Selbstbau bis zur
-Deluxe-Edition mit eigenem Display. Sie ergänzt die technischen
-Bauanleitungen in [README.md](README.md) und [docs/](docs/) und dient
-als Übersicht, wohin sich das Projekt entwickelt.
+This roadmap describes the strategic product phases of
+**Hamster Fitness Hardware** — from the current DIY build to a deluxe
+edition with its own display. It complements the technical build
+guides in [README.md](README.md) and [docs/](docs/) and serves as an
+overview of where the project is headed.
 
-## 1. Strategische Produkt-Phasen
+## 1. Strategic product phases
 
-### 🚀 Phase 1: Die Bastler-Edition (DIY-Starter-Kit für Familien & Maker) — AKTUELL / MVP
+### 🚀 Phase 1: The DIY Edition (DIY starter kit for families & makers) — CURRENT / MVP
 
-**Status:** ✅ Voll funktionsfähig. Fokus liegt aktuell auf
-Feedback-Sammlung, Community-Aufbau (HACS) und Feinschliff der
-Sensordaten-Analyse.
+**Status:** ✅ Fully functional. Current focus is on gathering
+feedback, growing the community (HACS), and refining the sensor data
+analysis.
 
-- **Zielgruppe:** Eltern mit Kindern, DIY-Maker, Smart-Home-Bastler
-  und HACS-Early-Adopter.
-- **Hardware-Basis:** günstige, frei verfügbare Standard-Komponenten:
-  - Mikrocontroller: [ESP8266 (ESP-12F / D1 Mini)](https://www.az-delivery.de/products/esp8266-12e)
-  - Sensorik: TCRT5000 Infrarot-Reflexionssensor (optische Erfassung,
-    knabbersicher — kommt ohne Magnete aus)
-  - Verkabelung: Jumper-Kabel / Breadboard / einfaches 3D-Druck-Gehäuse
-- **Software & Integration:**
-  - Nutzt den bereits im Hardware-Repo bereitgestellten, erprobten
-    ESPHome-Code ([`esphome/hamster-wheel-sensor.yaml`](esphome/hamster-wheel-sensor.yaml)).
-  - Vollständige Einbindung in Home Assistant via Auto-Discovery &
-    Custom Component (HACS).
+- **Target audience:** parents building with their kids, DIY makers,
+  smart-home hobbyists, and HACS early adopters.
+- **Hardware base:** cheap, widely available standard components:
+  - Microcontroller: ESP8266 (ESP-12F / D1 Mini) — see the
+    [parts list](docs/diy-edition-parts-list.md) for sources
+  - Sensor: TCRT5000 infrared reflective sensor (optical detection,
+    chew-safe — no magnets needed)
+  - Wiring: jumper wires / breadboard / simple 3D-printed enclosure
+- **Software & integration:**
+  - Uses the proven ESPHome code already provided in this repo
+    ([`esphome/hamster-wheel-sensor.yaml`](esphome/hamster-wheel-sensor.yaml)).
+  - Full integration into Home Assistant via auto-discovery & a
+    custom component (HACS).
 
-> **Die Bastler-Edition ist der primäre Einstiegspunkt ins Projekt.**
-> Der vorhandene ESPHome-Code ist in erster Linie für genau dieses
-> Setup (ESP8266 + TCRT5000) geschrieben und getestet — wer diese
-> Teile besorgt, ist ohne Lötkenntnisse und ohne Wartezeit auf
-> Custom-Hardware startklar. Eine kurze Einstiegsanleitung dazu gibt
-> es im Haupt-README: [DIY Getting Started Guide](README.md#-diy-getting-started-guide-bastler-edition).
+> **The DIY Edition is the primary entry point into the project.**
+> The existing ESPHome code is written and tested first and foremost
+> for exactly this setup (ESP8266 + TCRT5000) — get these parts and
+> you're up and running with no soldering skills and no wait for
+> custom hardware. See the main README for a short walkthrough:
+> [DIY Getting Started Guide](README.md#-diy-getting-started-guide-diy-edition).
 
-### 🏭 Phase 2: Commercial Plug-and-Play Edition (All-in-One PCB)
+### 🏭 Phase 2: Commercial Plug-and-Play Edition (all-in-one PCB)
 
-**Status:** 📋 In Planung.
+**Status:** 📋 Planned.
 
-- **Zielgruppe:** Endkunden ohne Löterfahrung oder technischen
-  Hintergrund.
-- **Hardware-Basis:**
-  - Custom All-in-One-PCB (Turnkey PCBA via PCBWay)
+- **Target audience:** end customers with no soldering experience or
+  technical background.
+- **Hardware base:**
+  - Custom all-in-one PCB (turnkey PCBA via PCBWay)
   - Chip: [ESP32-S31](https://www.espressif.com/en/products/socs/esp32-s31)
-    (Wi-Fi 6, Bluetooth 5.4 und natives 802.15.4 für Thread/Zigbee —
-    also eine echte Matter/Thread-Basis — plus deutlich mehr
-    Rechenleistung für die direkte Darstellung der Daten auf einer
-    eigenen "Webseite" auf dem Chip. Laut Espressif aktuell noch
-    nicht verfügbar — passt aber zum "in Planung"-Status dieser
-    Phase.)
-  - Integrierte Sensorik: SHT40 SMD (Klima), Reed-Kontakt
-    (Deckelöffnung), IR-Kopf auf einem Board
-  - Gehäuse: hamstersicheres 3D-Druck-Gehäuse mit geschützter
-    interner USB-C-Kabelführung und Glasrand-Halterung
+    (Wi-Fi 6, Bluetooth 5.4, and native 802.15.4 for Thread/Zigbee —
+    a genuine Matter/Thread foundation — plus significantly more
+    compute for rendering the data directly on its own "web page" on
+    the chip. Not yet available per Espressif, which fits this
+    phase's "planned" status.)
+  - Sensors on the main PCB: SHT40 SMD (climate) and a reed contact
+    (lid-open detection) — the board sits right in the glass-rim
+    mount for this, so it's outside the bedding and needs no extra
+    cable to the lid
+  - IR head: relocated onto an adjustable mount close to the wheel,
+    connected to the main PCB by a short protected cable — still
+    just **one** PCB and no loose wiring
+  - Enclosure: hamster-safe 3D-printed housing with protected internal
+    USB-C cable routing, a rattle-free glass-rim mount (felt pads as
+    spacers), and a telescoping IR arm
 
-**Meilensteine:**
+**Milestones:**
 
-- [ ] Schaltplan & Layout für das All-in-One-PCB (KiCad, [`pcb/`](pcb/))
-- [ ] Turnkey-PCBA-Fertigungsauftrag (PCBWay) inkl. Bestückung
-- [ ] Portierung/Erweiterung der ESPHome-Konfiguration auf ESP32-S3
-      sowie Anbindung der zusätzlichen Sensorik (SHT40, Reed-Kontakt)
-- [ ] Gehäusedesign mit geschützter USB-C-Kabelführung und
-      Glasrand-Halterung ([`cad/`](cad/))
-- [ ] Beta-Testphase mit Community-Testern
+- [ ] Schematic & layout for the all-in-one PCB (KiCad, [`pcb/`](pcb/))
+- [ ] Turnkey PCBA manufacturing order (PCBWay), assembled
+- [ ] Port/extend the ESPHome config to the ESP32-S31 and wire up the
+      additional sensors (SHT40, reed contact)
+- [ ] Adjustable mount for the IR head (telescoping/rail mechanism,
+      at least 2 axes: distance to the wheel + height) — accommodates
+      different cage sizes, wheel positions, and changing bedding
+      depth without tools
+- [ ] Short, protected cable between the IR head and the main PCB,
+      routed inside the mount instead of exposed (chew safety)
+- [ ] Rattle-free glass-rim mount for the main PCB: adjustable clamp
+      for different glass thicknesses, felt pads as spacers against
+      both glass and enclosure
+- [ ] Magnet-holder counterpart for the reed contact, clip- or
+      stick-on for the movable lid
+- [ ] Protected internal USB-C cable routing ([`cad/`](cad/))
+- [ ] Beta testing phase with community testers
 
 ### 💎 Phase 3: Deluxe Standalone Edition
 
-**Status:** 💭 Konzept / Ausblick.
+**Status:** 💭 Concept / outlook.
 
-- **Hardware:** integriertes, blendfreies E-Paper-/E-Ink-Display
-  direkt am Gehege — zeigt die wichtigsten Werte (z. B. Distanz,
-  Geschwindigkeit) an, ganz ohne dafür Home Assistant öffnen zu
-  müssen.
+- **Hardware:** an integrated, glare-free E-paper/E-ink display right
+  on the enclosure — shows the key stats (e.g. distance, speed)
+  without needing to open Home Assistant.
 
-**Meilensteine:**
+**Milestones:**
 
-- [ ] Auswahl E-Paper-/E-Ink-Panel (Größe, Auflösung, Ansteuerung)
-- [ ] Energiebudget/Stromversorgung für ein dauerhaft aktives Display
-- [ ] UI-Konzept für die Displaydarstellung
-- [ ] Gehäuseanpassung für blendfreie Display-Integration
+- [ ] Choose an E-paper/E-ink panel (size, resolution, driving)
+- [ ] Power budget/supply for a permanently active display
+- [ ] UI concept for the display layout
+- [ ] Enclosure adaptation for glare-free display integration
 
 ---
 
-## 2. Einordnung
+## 2. How the phases relate
 
-Alle drei Phasen teilen sich dieselbe Datenbasis: ESPHome auf dem
-Mikrocontroller → Home Assistant → [ha-hamster-fitness-integration](https://github.com/GpsM2/ha-hamster-fitness-integration).
-Phase 2 und 3 bauen auf den in Phase 1 etablierten Sensor-Prinzipien
-auf und ersetzen Schritt für Schritt Breadboard/Jumper-Kabel durch
-integrierte, endkundentaugliche Hardware — die Bastler-Edition bleibt
-dabei als günstiger, offener Selbstbau-Weg erhalten.
+All three phases share the same data path: ESPHome on the
+microcontroller → Home Assistant → [ha-hamster-fitness-integration](https://github.com/GpsM2/ha-hamster-fitness-integration).
+Phases 2 and 3 build on the sensing principles established in Phase 1
+and progressively replace breadboard/jumper wiring with integrated,
+consumer-ready hardware — the DIY Edition remains available as the
+cheap, open, build-it-yourself path.

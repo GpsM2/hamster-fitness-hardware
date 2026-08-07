@@ -10,7 +10,7 @@
 > Assistant integration itself lives in a separate repository:
 > [ha-hamster-fitness-integration](https://github.com/GpsM2/ha-hamster-fitness-integration).**
 
-> This repo currently ships the **Bastler-Edition** — a DIY starter
+> This repo currently ships the **DIY Edition** — a DIY starter
 > kit built from cheap, standard parts. It's the fastest way in, and
 > the primary target for the ESPHome code here. See
 > [ROADMAP.md](ROADMAP.md) for where the project is headed next
@@ -29,7 +29,7 @@ README.)
 
 ## What's here
 
-- **`ROADMAP.md`** — product roadmap: Bastler-Edition (DIY, now) →
+- **`ROADMAP.md`** — product roadmap: DIY Edition (now) →
   Plug-and-Play PCB edition → Deluxe E-Ink edition.
 - **`esphome/`** — ESPHome YAML firmware for the wheel-rotation sensor.
 - **`cad/`** — OpenSCAD/STL/STEP files for the 3D-printed enclosure
@@ -38,7 +38,7 @@ README.)
   hand-wired build (nothing here yet).
 - **`docs/`** — build guides and bills of materials.
 
-## 🐹 DIY Getting Started Guide (Bastler-Edition)
+## 🐹 DIY Getting Started Guide (DIY Edition)
 
 This is Phase 1 of the [roadmap](ROADMAP.md) and the fastest way to a
 working wheel sensor: cheap, off-the-shelf parts, no soldering
@@ -48,17 +48,24 @@ a fun first smart-home build to do together with kids.
 
 **Parts:**
 
-- An ESP8266 board — [ESP-12F / "D1 Mini"](https://www.az-delivery.de/products/esp8266-12e)
-  (a few euros, widely available)
+- An ESP8266 board — "ESP-12F" / "D1 Mini" (a few euros, widely
+  available — e.g. [BerryBase (DE)](https://www.berrybase.de/en/d1-mini-esp8266-entwicklungsboard);
+  see [docs/diy-edition-parts-list.md](docs/diy-edition-parts-list.md)
+  for more sources, including the US)
 - A TCRT5000 infrared reflective sensor module — optical, so no
   magnets to glue to the wheel and nothing a hamster can chew through
 - Jumper wires and a small breadboard (or a 3D-printed mount, see
   `cad/`)
 
+<figure>
+  <img src="docs/wiring-d1-mini-tcrt5000.svg" alt="Wiring the D1 Mini to the TCRT5000: 3V3 to VCC, GND to GND, D2/GPIO4 to D0/OUT. The TCRT5000 optically detects a marker on the wheel, once per revolution." width="680">
+  <figcaption>D1 Mini ↔ TCRT5000 wiring — 3 wires, no soldering. A KiCad version of this is in <a href="pcb/diy-edition-wiring.kicad_sch"><code>pcb/diy-edition-wiring.kicad_sch</code></a>.</figcaption>
+</figure>
+
 **Steps:**
 
 1. Wire the TCRT5000 module to the ESP8266: signal/`D0` → `D2`
-   (GPIO4), plus `VCC` → `3V3` and `GND` → `GND`.
+   (GPIO4), plus `VCC` → `3V3` and `GND` → `GND` (see diagram above).
 2. Open `esphome/hamster-wheel-sensor.yaml` in ESPHome and flash it to
    your board — this config is written and tuned specifically for
    this ESP8266 + TCRT5000 setup, so there's nothing else to configure.
