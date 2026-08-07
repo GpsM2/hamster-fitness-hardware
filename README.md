@@ -10,6 +10,12 @@
 > Assistant integration itself lives in a separate repository:
 > [ha-hamster-fitness-integration](https://github.com/GpsM2/ha-hamster-fitness-integration).**
 
+> This repo currently ships the **Bastler-Edition** — a DIY starter
+> kit built from cheap, standard parts. It's the fastest way in, and
+> the primary target for the ESPHome code here. See
+> [ROADMAP.md](ROADMAP.md) for where the project is headed next
+> (a plug-and-play PCB edition, then a deluxe E-Ink edition).
+
 ## License
 
 This project uses the
@@ -23,6 +29,8 @@ README.)
 
 ## What's here
 
+- **`ROADMAP.md`** — product roadmap: Bastler-Edition (DIY, now) →
+  Plug-and-Play PCB edition → Deluxe E-Ink edition.
 - **`esphome/`** — ESPHome YAML firmware for the wheel-rotation sensor.
 - **`cad/`** — OpenSCAD/STL/STEP files for the 3D-printed enclosure
   (nothing here yet).
@@ -30,21 +38,43 @@ README.)
   hand-wired build (nothing here yet).
 - **`docs/`** — build guides and bills of materials.
 
-## Build the wheel sensor
+## 🐹 DIY Getting Started Guide (Bastler-Edition)
 
-1. Get a cheap ESP8266 board (like a "D1 Mini") and an optical sensor
-   (a small light sensor that notices when something passes by it).
+This is Phase 1 of the [roadmap](ROADMAP.md) and the fastest way to a
+working wheel sensor: cheap, off-the-shelf parts, no soldering
+required (jumper wires are enough), and no special tools. If you've
+ever wired up an Arduino or Raspberry Pi project, this is easier — and
+a fun first smart-home build to do together with kids.
+
+**Parts:**
+
+- An ESP8266 board — [ESP-12F / "D1 Mini"](https://www.az-delivery.de/products/esp8266-12e)
+  (a few euros, widely available)
+- A TCRT5000 infrared reflective sensor module — optical, so no
+  magnets to glue to the wheel and nothing a hamster can chew through
+- Jumper wires and a small breadboard (or a 3D-printed mount, see
+  `cad/`)
+
+**Steps:**
+
+1. Wire the TCRT5000 module to the ESP8266: signal/`D0` → `D2`
+   (GPIO4), plus `VCC` → `3V3` and `GND` → `GND`.
 2. Open `esphome/hamster-wheel-sensor.yaml` in ESPHome and flash it to
-   your board.
+   your board — this config is written and tuned specifically for
+   this ESP8266 + TCRT5000 setup, so there's nothing else to configure.
 3. In your ESPHome `secrets.yaml` file, add these four entries:
    `wifi_ssid`, `wifi_password`, `esphome_web_d027a9__encryption_key`,
    `esphome_web_d018de__ota_password`.
-4. Attach the sensor to the wheel so it "sees" one mark or magnet once
-   per full turn.
+4. Mount the sensor next to the wheel so it "sees" one mark (e.g. a
+   strip of tape or a printed marker) once per full turn.
 5. Once it's flashed, Home Assistant should find it automatically
    through the ESPHome integration.
 6. Install [ha-hamster-fitness-integration](https://github.com/GpsM2/ha-hamster-fitness-integration)
    and point it at this sensor's rotation-count entity.
+
+Outgrown the breadboard, or want to skip soldering entirely? See
+[ROADMAP.md](ROADMAP.md) for the planned Plug-and-Play PCB and Deluxe
+editions.
 
 ## Support this project
 
