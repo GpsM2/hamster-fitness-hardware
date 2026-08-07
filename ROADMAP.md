@@ -17,7 +17,8 @@ Sensordaten-Analyse.
 - **Zielgruppe:** Eltern mit Kindern, DIY-Maker, Smart-Home-Bastler
   und HACS-Early-Adopter.
 - **Hardware-Basis:** günstige, frei verfügbare Standard-Komponenten:
-  - Mikrocontroller: [ESP8266 (ESP-12F / D1 Mini)](https://www.az-delivery.de/products/esp8266-12e)
+  - Mikrocontroller: ESP8266 (ESP-12F / D1 Mini) — Bezugsquellen
+    siehe [Teileliste](docs/bastler-edition-teileliste.md)
   - Sensorik: TCRT5000 Infrarot-Reflexionssensor (optische Erfassung,
     knabbersicher — kommt ohne Magnete aus)
   - Verkabelung: Jumper-Kabel / Breadboard / einfaches 3D-Druck-Gehäuse
@@ -49,19 +50,36 @@ Sensordaten-Analyse.
     eigenen "Webseite" auf dem Chip. Laut Espressif aktuell noch
     nicht verfügbar — passt aber zum "in Planung"-Status dieser
     Phase.)
-  - Integrierte Sensorik: SHT40 SMD (Klima), Reed-Kontakt
-    (Deckelöffnung), IR-Kopf auf einem Board
+  - Sensorik auf dem Haupt-PCB: SHT40 SMD (Klima) und Reed-Kontakt
+    (Deckelöffnung) — das Board sitzt dafür direkt in der
+    Glasrand-Halterung, also außerhalb der Einstreu und ohne
+    Extra-Kabel zum Deckel
+  - IR-Kopf: ausgelagert auf einer verstellbaren Halterung nah am
+    Rad, per kurzem geschütztem Kabel mit dem Haupt-PCB verbunden —
+    dadurch trotzdem nur **ein** PCB und kein Kabelsalat
   - Gehäuse: hamstersicheres 3D-Druck-Gehäuse mit geschützter
-    interner USB-C-Kabelführung und Glasrand-Halterung
+    interner USB-C-Kabelführung, klapperfreier Glasrand-Halterung
+    (Filzgleiter als Abstandshalter) und teleskopierbarem IR-Arm
 
 **Meilensteine:**
 
 - [ ] Schaltplan & Layout für das All-in-One-PCB (KiCad, [`pcb/`](pcb/))
 - [ ] Turnkey-PCBA-Fertigungsauftrag (PCBWay) inkl. Bestückung
-- [ ] Portierung/Erweiterung der ESPHome-Konfiguration auf ESP32-S3
+- [ ] Portierung/Erweiterung der ESPHome-Konfiguration auf ESP32-S31
       sowie Anbindung der zusätzlichen Sensorik (SHT40, Reed-Kontakt)
-- [ ] Gehäusedesign mit geschützter USB-C-Kabelführung und
-      Glasrand-Halterung ([`cad/`](cad/))
+- [ ] Verstellbare Halterung für den IR-Kopf (Teleskop-/Schienen-
+      mechanismus, mind. 2 Achsen: Abstand zum Rad + Höhe) — gleicht
+      unterschiedliche Käfiggrößen, Radpositionen und wechselnde
+      Einstreuhöhen ohne Werkzeug aus
+- [ ] Kurzes, geschütztes Verbindungskabel IR-Kopf ↔ Haupt-PCB,
+      innerhalb der Halterung geführt statt frei liegend
+      (Knabbersicherheit)
+- [ ] Klapperfreie Glasrand-Halterung fürs Haupt-PCB: verstellbare
+      Klemmung für unterschiedliche Glasstärken, Filzgleiter als
+      Abstandshalter zu Glas und Gehäuse
+- [ ] Magnethalter-Gegenstück für den Reed-Kontakt zum Anclipsen/
+      Ankleben am beweglichen Deckel
+- [ ] Geschützte interne USB-C-Kabelführung ([`cad/`](cad/))
 - [ ] Beta-Testphase mit Community-Testern
 
 ### 💎 Phase 3: Deluxe Standalone Edition
