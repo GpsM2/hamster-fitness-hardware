@@ -37,63 +37,30 @@ analysis.
 
 ### 🏭 Phase 2: Commercial Plug-and-Play Edition (all-in-one PCB)
 
-**Status:** 📋 Planned.
+**Status:** 📋 Planned — tracked as issues in the
+[hamster-fitness-product](https://github.com/GpsM2/hamster-fitness-product)
+repo, milestone
+["Phase 2: Plug-and-Play Edition"](https://github.com/GpsM2/hamster-fitness-product/milestone/1).
 
 - **Target audience:** end customers with no soldering experience or
   technical background.
-- **Hardware base:**
-  - Custom all-in-one PCB (turnkey PCBA via PCBWay)
-  - Chip: [ESP32-S31](https://www.espressif.com/en/products/socs/esp32-s31)
-    (Wi-Fi 6, Bluetooth 5.4, and native 802.15.4 for Thread/Zigbee —
-    a genuine Matter/Thread foundation — plus significantly more
-    compute for rendering the data directly on its own "web page" on
-    the chip. Not yet available per Espressif, which fits this
-    phase's "planned" status.)
-  - Sensors on the main PCB: SHT40 SMD (climate) and a reed contact
-    (lid-open detection) — the board sits right in the glass-rim
-    mount for this, so it's outside the bedding and needs no extra
-    cable to the lid
-  - IR head: relocated onto an adjustable mount close to the wheel,
-    connected to the main PCB by a short protected cable — still
-    just **one** PCB and no loose wiring
-  - Enclosure: hamster-safe 3D-printed housing with protected internal
-    USB-C cable routing, a rattle-free glass-rim mount (felt pads as
-    spacers), and a telescoping IR arm
-
-**Milestones:**
-
-- [ ] Schematic & layout for the all-in-one PCB (KiCad, [`pcb/`](pcb/))
-- [ ] Turnkey PCBA manufacturing order (PCBWay), assembled
-- [ ] Port/extend the ESPHome config to the ESP32-S31 and wire up the
-      additional sensors (SHT40, reed contact)
-- [ ] Adjustable mount for the IR head (telescoping/rail mechanism,
-      at least 2 axes: distance to the wheel + height) — accommodates
-      different cage sizes, wheel positions, and changing bedding
-      depth without tools
-- [ ] Short, protected cable between the IR head and the main PCB,
-      routed inside the mount instead of exposed (chew safety)
-- [ ] Rattle-free glass-rim mount for the main PCB: adjustable clamp
-      for different glass thicknesses, felt pads as spacers against
-      both glass and enclosure
-- [ ] Magnet-holder counterpart for the reed contact, clip- or
-      stick-on for the movable lid
-- [ ] Protected internal USB-C cable routing ([`cad/`](cad/))
-- [ ] Beta testing phase with community testers
+- **Hardware base:** custom all-in-one PCB (turnkey PCBA via PCBWay,
+  chip: [ESP32-S31](https://www.espressif.com/en/products/socs/esp32-s31)),
+  SHT40 climate sensor and a reed contact for lid detection on the main
+  board, an IR head relocated onto its own adjustable mount, and a
+  hamster-safe 3D-printed enclosure. Still just **one** PCB and no loose
+  wiring.
 
 ### 💎 Phase 3: Deluxe Standalone Edition
 
-**Status:** 💭 Concept / outlook.
+**Status:** 💭 Concept / outlook — tracked as issues in the
+[hamster-fitness-product](https://github.com/GpsM2/hamster-fitness-product)
+repo, milestone
+["Phase 3: Deluxe Standalone Edition"](https://github.com/GpsM2/hamster-fitness-product/milestone/2).
 
 - **Hardware:** an integrated, glare-free E-paper/E-ink display right
   on the enclosure — shows the key stats (e.g. distance, speed)
   without needing to open Home Assistant.
-
-**Milestones:**
-
-- [ ] Choose an E-paper/E-ink panel (size, resolution, driving)
-- [ ] Power budget/supply for a permanently active display
-- [ ] UI concept for the display layout
-- [ ] Enclosure adaptation for glare-free display integration
 
 ---
 
