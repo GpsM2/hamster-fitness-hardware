@@ -74,6 +74,23 @@ a fun first smart-home build to do together with kids.
 6. Install [ha-hamster-fitness-integration](https://github.com/GpsM2/ha-hamster-fitness-integration)
    and point it at this sensor's rotation-count entity.
 
+## Firmware versions
+
+The firmware carries a version number, and Home Assistant shows it as the
+device's firmware version — Settings → Devices & Services → ESPHome, or
+the device page itself. It comes from the `project:` block at the top of
+[`esphome/hamster-wheel-sensor.yaml`](esphome/hamster-wheel-sensor.yaml).
+
+**That number always matches a [release](../../releases) of this
+repository.** So if your device reports `1.0.0`, you are running exactly
+what the `v1.0.0` release contains, and you can read that release's notes
+to see what changed since the version you had before. There is no
+auto-update: re-flashing is a deliberate step, which is why knowing what
+is actually on the board matters.
+
+Contributing a firmware change? Bump `project.version` in the same pull
+request, and the release gets cut with the matching tag.
+
 ## Support this project
 
 Hamster Fitness is free and always will be. If it's useful to you and you

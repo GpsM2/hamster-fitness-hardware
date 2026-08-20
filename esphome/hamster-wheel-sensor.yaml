@@ -2,6 +2,13 @@ esphome:
   name: hamster-wheel-sensor
   friendly_name: Hamster Wheel Sensor
   name_add_mac_suffix: false
+  # Home Assistant shows this as the device's firmware version, so it is
+  # worth keeping honest: it always matches the GitHub release this file
+  # was published in. Change the firmware, cut a release, bump both in the
+  # same pull request - see README.md, "Firmware versions".
+  project:
+    name: "GpsM2.hamster-fitness-hardware"
+    version: "1.0.0"
 
 esp8266:
   board: d1_mini
