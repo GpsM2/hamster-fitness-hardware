@@ -64,9 +64,19 @@ a fun first smart-home build to do together with kids.
 2. Open `esphome/hamster-wheel-sensor.yaml` in ESPHome and flash it to
    your board — this config is written and tuned specifically for
    this ESP8266 + TCRT5000 setup, so there's nothing else to configure.
-3. In your ESPHome `secrets.yaml` file, add these four entries:
-   `wifi_ssid`, `wifi_password`, `esphome_web_d027a9__encryption_key`,
-   `esphome_web_d018de__ota_password`.
+3. Add these four entries to your ESPHome `secrets.yaml`:
+
+   ```yaml
+   wifi_ssid: "YourNetwork"
+   wifi_password: "your-wifi-password"
+   api_encryption_key: "..."   # 32-byte base64 key, see below
+   ota_esphome_key: "pick-anything-you-can-remember"
+   ```
+
+   ESPHome generates a suitable `api_encryption_key` for you — in the
+   ESPHome dashboard it appears when you create a device, or you can
+   copy one from an existing device's config. The OTA key is simply a
+   password you choose; you need it again for wireless re-flashing.
 4. Mount the sensor next to the wheel so it "sees" one mark (e.g. a
    strip of tape or a printed marker) once per full turn.
 5. Once it's flashed, Home Assistant should find it automatically

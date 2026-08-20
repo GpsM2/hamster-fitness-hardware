@@ -19,12 +19,12 @@ logger:
 # Enable Home Assistant API
 api:
   encryption:
-    key: !secret esphome_web_d027a9__encryption_key
+    key: !secret api_encryption_key
 
 # Allow Over-The-Air updates
 ota:
   - platform: esphome
-    password: !secret esphome_web_d018de__ota_password
+    password: !secret ota_esphome_key
 
 # Allow provisioning Wi-Fi via serial
 improv_serial:
