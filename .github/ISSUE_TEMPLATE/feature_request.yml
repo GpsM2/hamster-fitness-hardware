@@ -1,0 +1,46 @@
+name: Feature request
+description: Suggest a new hardware design, CAD part, wiring improvement, or firmware feature.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! Please describe it below - concrete examples
+        help a lot.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: What does this relate to?
+      options:
+        - ESPHome firmware
+        - Wiring / sensor design
+        - 3D-printed enclosure / CAD
+        - PCB design
+        - Build documentation
+        - Something else
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What would you like to see?
+      description: Describe the feature or change you're requesting.
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Why is this useful?
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives or workarounds you've tried
+    validations:
+      required: false

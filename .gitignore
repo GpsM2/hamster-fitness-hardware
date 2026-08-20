@@ -1,0 +1,13 @@
+.esphome/
+secrets.yaml
+
+# Agent working notes - local only, never part of the published repo
+.claude/
+
+# KiCad backups/locks
+*.kicad_sch-bak
+*.kicad_pcb-bak
+_autosave-*
+*-backups/
+fp-info-cache
+*.lck
