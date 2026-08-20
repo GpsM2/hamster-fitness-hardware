@@ -10,11 +10,8 @@
 > Assistant integration itself lives in a separate repository:
 > [ha-hamster-fitness-integration](https://github.com/GpsM2/ha-hamster-fitness-integration).**
 
-> This repo currently ships the **DIY Edition** — a DIY starter
-> kit built from cheap, standard parts. It's the fastest way in, and
-> the primary target for the ESPHome code here. See
-> [ROADMAP.md](ROADMAP.md) for where the project is headed next
-> (a plug-and-play PCB edition, then a deluxe E-Ink edition).
+> This repo ships the **DIY Edition** — a starter kit built from cheap,
+> standard parts, and the target the ESPHome code here is written for.
 
 ## License
 
@@ -29,8 +26,6 @@ README.)
 
 ## What's here
 
-- **`ROADMAP.md`** — product roadmap: DIY Edition (now) →
-  Plug-and-Play PCB edition → Deluxe E-Ink edition.
 - **`esphome/`** — ESPHome YAML firmware for the wheel-rotation sensor.
 - **`cad/`** — OpenSCAD/STL/STEP files for the 3D-printed enclosure
   (nothing here yet).
@@ -40,9 +35,9 @@ README.)
 
 ## 🐹 DIY Getting Started Guide (DIY Edition)
 
-This is Phase 1 of the [roadmap](ROADMAP.md) and the fastest way to a
-working wheel sensor: cheap, off-the-shelf parts, no soldering
-required (jumper wires are enough), and no special tools. If you've
+This is the fastest way to a working wheel sensor: cheap, off-the-shelf
+parts, no soldering required (jumper wires are enough), and no special
+tools. If you've
 ever wired up an Arduino or Raspberry Pi project, this is easier — and
 a fun first smart-home build to do together with kids.
 
@@ -78,10 +73,6 @@ a fun first smart-home build to do together with kids.
    through the ESPHome integration.
 6. Install [ha-hamster-fitness-integration](https://github.com/GpsM2/ha-hamster-fitness-integration)
    and point it at this sensor's rotation-count entity.
-
-Outgrown the breadboard, or want to skip soldering entirely? See
-[ROADMAP.md](ROADMAP.md) for the planned Plug-and-Play PCB and Deluxe
-editions.
 
 ## Support this project
 

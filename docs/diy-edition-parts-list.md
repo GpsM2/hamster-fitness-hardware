@@ -1,7 +1,7 @@
 # Parts List: DIY Edition
 
-Shopping list for the [DIY Edition](../ROADMAP.md) (Phase 1) — everything
-you need for the [DIY Getting Started Guide](../README.md#-diy-getting-started-guide-diy-edition).
+Shopping list for the DIY Edition — everything you need for the
+[DIY Getting Started Guide](../README.md#-diy-getting-started-guide-diy-edition).
 
 No affiliate links here on purpose — just real, checked links to where
 you can actually buy the parts, in Germany and the US.
