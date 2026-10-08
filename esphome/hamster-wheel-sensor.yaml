@@ -1,3 +1,10 @@
+substitutions:
+  # Fastest a hamster plausibly turns the wheel. Pulses arriving faster than
+  # one turn at this speed are ignored - in real data they were stray
+  # pulses (wheel rocking back over the mark), never running: sustained
+  # peaks stayed below ~6.2 km/h while single readings reached 13 km/h.
+  max_speed_kmh: "8.0"
+
 esphome:
   name: hamster-wheel-sensor
   friendly_name: Hamster Wheel Sensor
@@ -8,7 +15,21 @@ esphome:
   # same pull request - see README.md, "Firmware versions".
   project:
     name: "GpsM2.hamster-fitness-hardware"
-    version: "1.0.0"
+    version: "1.1.0"
+  # Publish the restored counters right away. Otherwise Home Assistant sees
+  # "unknown" until the hamster next runs - hours, after a daytime reboot.
+  # -100 runs once everything is set up, so the diameter is restored too.
+  on_boot:
+    priority: -100
+    then:
+      - lambda: |-
+          float d = id(wheel_diameter).state;
+          if (isnan(d)) d = 28.0;
+          id(sensor_pulses_total).publish_state(id(pulses_total));
+          id(sensor_distance_total).publish_state(id(pulses_total) * d * 3.14159265 * 0.00001);
+          id(sensor_distance_today).publish_state(id(pulses_today) * d * 3.14159265 * 0.00001);
+          id(sensor_max_speed_today).publish_state(id(max_rpm_today) * d * 3.14159265 * 0.0006);
+          id(sensor_speed).publish_state(0.0);
 
 esp8266:
   board: d1_mini
@@ -153,7 +174,14 @@ binary_sensor:
             // Alles unter 250 Millisekunden wird konsequent ignoriert.
             // 250ms entsprechen 4 Umdrehungen pro Sekunde (sehr schnell).
             // --------------------------------------------------------
-            if (diff > 250) {
+            float d = id(wheel_diameter).state;
+            if (isnan(d)) d = 28.0;
+            // Time for one turn at max_speed_kmh: circumference / speed.
+            // Never below the original 250 ms debounce floor.
+            uint32_t min_interval = (uint32_t) (d * 3.14159265 * 0.01 / (${max_speed_kmh} / 3.6) * 1000.0);
+            if (min_interval < 250) min_interval = 250;
+
+            if (diff > min_interval) {
               id(last_pulse_time) = now;
 
               // 1. Zähler erhöhen
@@ -166,8 +194,6 @@ binary_sensor:
               if (rpm > id(max_rpm_today)) {
                 id(max_rpm_today) = rpm;
               }
-
-              float d = id(wheel_diameter).state;
 
               // Werte an Home Assistant senden
               id(sensor_speed).publish_state(rpm * d * 3.14159265 * 0.0006);
